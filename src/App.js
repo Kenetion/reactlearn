@@ -69,7 +69,7 @@ function App() {
       {planets.map((planet, key) => planet.isGasPlanet && <h1> {planet.name} </h1> )}
 
       <div>{ageBtn}
-      <button onClick={increaseAge}> Increase Age </button>
+      <button className='btn' onClick={increaseAge}> Increase Age </button>
       </div>
 
       <input type="text" onChange={handleInputChange} />
