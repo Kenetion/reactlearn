@@ -1,6 +1,6 @@
 export const User = (props) => {
     return (
-      <div className='name'>
+      <div>
         {props.name} {props.age}
       </div>
     );
