@@ -2,6 +2,7 @@ import './App.css';
 import { Job } from "./Job";
 import { User } from "./User";
 import { useState } from 'react';
+import { Task } from './task';
 
 function App() {
 
@@ -53,36 +54,98 @@ function App() {
     setCount(0);
   };
 
+  const [todoList, setTodoList] = useState( [] );
+  const [newTask, setNewTask] = useState("");
+
+  const handleChange = (event) => {
+    setNewTask(event.target.value);
+  };
+
+  const addTask = () => {
+    const task = {
+      id: todoList.length === 0 ? 1 : todoList[todoList.length -1].id + 1,
+      taskName: newTask,
+      completed: false,
+    };
+    setTodoList([...todoList, task]);
+  };
+
+  const deleteTask = (id) => {
+    setTodoList(todoList.filter((task) => task.id !== id));
+  };
+
+  const completeTask = (id) => {
+    setTodoList(
+      todoList.map((task) => {
+        if (task.id === id) {
+          return {...task, completed: true};
+        } else {
+          return task;
+        }
+      })
+    )
+  }
+
+
   return (
     <div className="App">
-      <Job salary = {90000} position = "Senior SDE" company = "Amazon" />;
-      <Job salary = {12000} position = "Junior SDE" company = "Google" />;
-      <Job salary = {10000} position = "Project Manager" company = "Netflix" />;
-      <p1> Wojtek </p1>;
-      {age >= 18 ? <h1>Over Age</h1> : <h1>Under Age</h1>};
+      <Job salary = {90000} position = "Senior SDE" company = "Amazon" />
+      <Job salary = {12000} position = "Junior SDE" company = "Google" />
+      <Job salary = {10000} position = "Project Manager" company = "Netflix" />
+      
+
+
+
+      {age >= 18 ? <h1>Over Age</h1> : <h1>Under Age</h1>}
+
+
+
       {names.map((name, key) => {
         return <h1 key={key}> {name} </h1>;
-      })};
+      })}
+
+
+
       {users.map((user,key) => {
-        return <User name={user.name} age={user.age} />;
-      })};
+        return <User name={user.name} age={user.age} />
+      })}
+
+
+
+
       {planets.map((planet, key) => planet.isGasPlanet && <h1> {planet.name} </h1> )}
+
+
+
 
       <div>{ageBtn}
       <button className='btn' onClick={increaseAge}> Increase Age </button>
       </div>
 
+
+
+
+
       <input type="text" onChange={handleInputChange} />
       {inputValue}
+
+
+
 
       <div>
       <button className='btn' onClick={() => {setShowText(!showText)}}> Show/Hide text</button>
       {showText && <h1> Hi my name is Wojtek</h1>}
       </div>
+
+
+
       <div>
         <button className='btn' onClick={() => {setTextColor(textColor === 'white' ? 'red' : 'white')}}>Change Color</button>
         <h1 style={{ color: textColor}}>text</h1>
       </div>
+
+
+
       <div>
         <button className='btn' onClick={increaseCount}>Increase</button>
         <button className='btn' onClick={decreaseCount}>Decrease</button>
@@ -90,6 +153,25 @@ function App() {
 
 
         {count}
+      </div>
+
+
+
+      <div>
+      <div className='addTask'>
+        <input onChange={handleChange} />
+        <button className='btn' onClick={addTask}>Add Task</button>
+      </div>
+      <div className='list'>
+        {todoList.map((task) => {
+          return <Task
+          taskName={task.taskName}
+          id={task.id}
+          completed={task.completed}
+          deleteTask={deleteTask}
+          completeTask={completeTask} />
+        })}
+      </div>
       </div>
     </div>
   );
