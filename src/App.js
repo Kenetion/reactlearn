@@ -3,6 +3,7 @@ import { Job } from "./Job";
 import { User } from "./User";
 import { useState } from 'react';
 import { Task } from './task';
+import { Text } from "./text";
 
 function App() {
 
@@ -85,6 +86,8 @@ function App() {
       })
     )
   }
+
+  const [showText1, setShowText1] = useState(false);
 
 
   return (
@@ -172,6 +175,11 @@ function App() {
           completeTask={completeTask} />
         })}
       </div>
+      </div>
+
+      <div>
+        <button className='btn' onClick={() => {setShowText1(!showText1)}}>Show Text</button>
+        {showText1 && <Text />}
       </div>
     </div>
   );
