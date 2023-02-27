@@ -1,9 +1,10 @@
 import './App.css';
 import { Job } from "./Job";
 import { User } from "./User";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Task } from './task';
 import { Text } from "./text";
+import Axios from 'axios';
 
 function App() {
 
@@ -88,6 +89,31 @@ function App() {
   }
 
   const [showText1, setShowText1] = useState(false);
+
+
+  const [catFact, setCatFact] = useState("");
+
+  const fetchCatFact = () => {
+    Axios.get("https://catfact.ninja/fact").then((res) => {
+    setCatFact(res.data.fact);
+  });
+  };
+
+  useEffect(() => {
+    fetchCatFact();
+  }, []);
+
+
+  const [name1, setName1] = useState("");
+  const [predictedAge, setPredictedAge] = useState(null);
+
+  const fetchData = () => {
+    Axios.get(`https://api.agify.io/?name=${name1}`).then((res) => {
+      setPredictedAge(res.data);
+    })
+  };
+
+  
 
 
   return (
@@ -181,6 +207,24 @@ function App() {
         <button className='btn' onClick={() => {setShowText1(!showText1)}}>Show Text</button>
         {showText1 && <Text />}
       </div>
+
+
+      <div>
+        <button className='btn' onClick={fetchCatFact}> Generate Cat Fact </button>
+        <p> {catFact} </p>
+      </div>
+
+
+      <div>
+        <input placeholder='Ex. Wojtek...' onChange={(event) => {setName1(event.target.value)}} />
+        <button onClick={fetchData}> Predict Age </button>
+
+        <h1> Name: {predictedAge?.name}</h1>
+        <h1> Predicted Age: {predictedAge?.age}</h1>
+        <h1> Count: {predictedAge?.count}</h1>
+      </div>
+
+      <div></div>
     </div>
   );
 }
