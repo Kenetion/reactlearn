@@ -5,6 +5,12 @@ import { useEffect, useState } from 'react';
 import { Task } from './task';
 import { Text } from "./text";
 import Axios from 'axios';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Home } from "./pages/Home";
+import { Menu } from "./pages/Menu";
+import { Contact } from "./pages/Contact";
+import { NotSpecified } from './pages/notspecified';
+import { NavBar } from "./NavBar"
 
 function App() {
 
@@ -134,6 +140,20 @@ function App() {
 
   return (
     <div className="App">
+
+      
+      <Router>
+        <NavBar/>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/menu" element={<Menu />}/>
+          <Route path="/contact" element={<Contact />}/>
+          <Route path="*" element={<NotSpecified />}/>
+        </Routes>
+      </Router>
+
+
+
       <Job salary={90000} position="Senior SDE" company="Amazon" />
       <Job salary={12000} position="Junior SDE" company="Google" />
       <Job salary={10000} position="Project Manager" company="Netflix" />
@@ -247,6 +267,11 @@ function App() {
         <button className='btn' onClick={() => {fetchExcuse("office")}}> Office </button>
         <h1> {generatedExcuse} </h1>
       </div>
+    
+
+      
+
+      
     </div>
   );
 }
