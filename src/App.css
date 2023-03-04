@@ -21,3 +21,29 @@
 .taskName {
   margin-right: 20px;
 }
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  font-size: 25px;
+}
+
+.lnk {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  border: 2px solid red;
+  padding: 15px;
+  background-color: teal;
+  border-radius: 50%;
+}
+
+.lnk:hover {
+  text-decoration: underline;
+  color: yellow;
+}
+
+
+

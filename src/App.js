@@ -4,16 +4,20 @@ import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
 import { Contact } from "./pages/Contact";
 import { NotSpecified } from './pages/notspecified';
-import { NavBar } from "./NavBar";
+import { NavBar } from "./components/NavBar";
 import { Learning } from "./pages/learning";
+import { useState, createContext } from 'react';
+
+export const AppContext = createContext();
 
 function App() {
+  const [username, setUsername] = useState ("");
 
   return (
     <div className="App">
-
+      <AppContext.Provider value={{username, setUsername}}>
       <Router>
-        <NavBar/>
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/Profile" element={<Profile />}/>
@@ -22,7 +26,7 @@ function App() {
           <Route path="*" element={<NotSpecified />}/>
         </Routes>
       </Router>
-
+      </AppContext.Provider>
     </div>
   );
 }

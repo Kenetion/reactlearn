@@ -1,9 +1,9 @@
 import '../App.css';
-import { Job } from "../Job";
-import { User } from "../User";
+import { Job } from "../components/Job";
+import { User } from "../components/User";
 import { useEffect, useState } from 'react';
-import { Task } from '../task';
-import { Text } from "../text";
+import { Task } from '../components/task';
+import { Text } from "../components/text";
 import Axios from 'axios';
 
 
