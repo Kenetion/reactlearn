@@ -13,5 +13,5 @@ export const Home = () => {
     };
     
     return <h1> This is the homepage and user is: { username } <p>{ catData?.fact }</p>
-    <button onClick={refetch}> Update Data </button></h1>
+    <button onClick={refetch} className="btn"> Update Data </button></h1>
 }

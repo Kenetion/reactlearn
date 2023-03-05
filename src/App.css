@@ -1,12 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   text-align: center;
   background-color: blueviolet;
+
 }
 
 .btn {
   border: 2px red solid;
   margin-right: 20px;
   margin: 20px;
+  background-color: yellow;
+  font-weight: 700;
 }
 
 .task {  
@@ -23,9 +34,12 @@
 }
 
 .nav {
+  position: sticky;
+  top: 0;
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
+  /* width: fit-content; */
   padding: 20px;
   font-size: 25px;
 }
@@ -36,8 +50,9 @@
   font-weight: bold;
   border: 2px solid red;
   padding: 15px;
+  margin: 3px;
   background-color: teal;
-  border-radius: 50%;
+  border-radius: 25px;
 }
 
 .lnk:hover {
@@ -45,5 +60,26 @@
   color: yellow;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formField {
+  border: 2px solid red;
+  padding: 5px;
+  margin: 2px;
+  border-radius: 20px;
+}
+
+.submit {
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.error {
+  color: red;
+}
 
 

@@ -8,6 +8,7 @@ import { NavBar } from "./components/NavBar";
 import { Learning } from "./pages/learning";
 import { useState, createContext } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { FormPage } from "./pages/FormPage"
 
 export const AppContext = createContext();
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/Profile" element={<Profile />}/>
           <Route path="/contact" element={<Contact />}/>
           <Route path="/learning" element={<Learning />}/>
+          <Route path="/formPage" element={<FormPage />}/>
           <Route path="*" element={<NotSpecified />}/>
         </Routes>
       </Router>
