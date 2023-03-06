@@ -6,10 +6,10 @@ export const ChangeProfile = () => {
     const [newUsername, setNewUsername] = useState ("");
     const { setUsername } = useContext(AppContext);
     return <div>
-        <input onChange={(event) => {
+        <input className="btn" onChange={(event) => {
             setNewUsername(event.target.value);
         }}/>
-        <button onClick={() => {
+        <button className="btn" onClick={() => {
             setUsername(newUsername);
         }}> Change Username </button>
     </div>

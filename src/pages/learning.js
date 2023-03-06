@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Task } from '../components/task';
 import { Text } from "../components/text";
 import Axios from 'axios';
+import { useToggle } from '../components/useToggle';
 
 
 
@@ -131,6 +132,8 @@ export function Learning() {
     )
   };
 
+  const [ isVisible, toggle ] = useToggle();
+
 
     return (
         <div>
@@ -170,7 +173,7 @@ export function Learning() {
 
 
 
-      <input type="text" onChange={handleInputChange} />
+      <input className='btn' type="text" onChange={handleInputChange} />
       {inputValue}
 
 
@@ -203,7 +206,7 @@ export function Learning() {
 
       <div>
         <div className='addTask'>
-          <input onChange={handleChange} />
+          <input className='btn' onChange={handleChange} />
           <button className='btn' onClick={addTask}>Add Task</button>
         </div>
         <div className='list'>
@@ -231,8 +234,8 @@ export function Learning() {
 
 
       <div>
-        <input placeholder='Ex. Wojtek...' onChange={(event) => { setName1(event.target.value) }} />
-        <button onClick={fetchData}> Predict Age </button>
+        <input className='btn' placeholder='Ex. Wojtek...' onChange={(event) => { setName1(event.target.value) }} />
+        <button className='btn' onClick={fetchData}> Predict Age </button>
 
         <h1> Name: {predictedAge?.name}</h1>
         <h1> Predicted Age: {predictedAge?.age}</h1>
@@ -245,6 +248,10 @@ export function Learning() {
         <button className='btn' onClick={() => {fetchExcuse("family")}}> Family </button>
         <button className='btn' onClick={() => {fetchExcuse("office")}}> Office </button>
         <h1> {generatedExcuse} </h1>
+      </div>
+      <div>
+        <button className='btn' onClick={toggle}> {isVisible ? "Hide" : "Show"} </button>
+        {isVisible && <h1> Hidden Text </h1>}
       </div>
       </div>
     )
